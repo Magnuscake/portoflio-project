@@ -31,8 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # notify Django of the new model
+    # notify Django of the new model - jobs
     'jobs.apps.JobsConfig',
+    # notify of model blog
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
