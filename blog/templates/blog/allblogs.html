@@ -1,7 +1,6 @@
 <!--creating the extra jobs folder is optional-->
 <!doctype html>
 <html lang="en">
-<!--load static dir for resume-->
 {% load static %}
 
 <head>
@@ -10,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Saneyar</title>
+    <title>Saneyar's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
@@ -50,47 +49,34 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link" href="#">LinkedIn</a>
-                    <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-                    <a class="nav-item nav-link" href="{% url 'allblogs' %} ">Blog</a>
+                    <a class="nav-item nav-link" href="#">Resume</a>
+                    <a class="nav-item nav-link active" href="#">Blog</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <main role="main">
-
-        <section class="jumbotron text-center">
-            <div class="container">
-                <img src="{% static 'profile.jpg' %}" class="rounded-circle" height=200 width=200 />
-                <br>
-                <br>
-                <h1 class="jumbotron-heading">Hey you!</h1>
-                <p class="lead text-muted">My name is Saneyar Khazin and welcome to my personal portfolio.
-                    feel free to have a look around and interact with anything you find interesting. If you
-                    think I might be the perfect dev for designing your dream website, shoot me a message.
-                </p>
-                <p>
-                    <a href="mailto:saneyar@company.com" class="btn btn-primary my-2">Email me</a>
-                </p>
-            </div>
-        </section>
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-
-                <div class="row">
-
-                    {% for job in jobs.all %}
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="{{job.image.url}}" />
-                            <div class="card-body">
-                                <p class="card-text"> {{ job.summary }} </p>
-                            </div>
+        <div class="container">
+            <h1 class="text-center pt-4">Welcome to Saney's Blog</h1>
+            <br><br>
+            <h2>Latest posts</h2>
+            <hr>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        {% for blog in blog.all %}
+                        <img class="card-img-top" src="{{ blog.image.url }}">
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                <a href="{% url 'detail' blog.id %}"> {{ blog.title }} </a>
+                            </h2>
+                            <!--summary limit for the blog body-->
+                            <div class="card-body"> {{ blog.summary }} </div>
+                            <div class="card-footer text-muted"> Published: {{ blog.pretty_pub_date }}</div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
-
                 </div>
             </div>
         </div>
